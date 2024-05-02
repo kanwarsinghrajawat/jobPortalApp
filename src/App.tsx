@@ -1,7 +1,7 @@
-import Job from "./JobPage";
+import JobPage from "./JobPage";
 
 const App = () => {
-  return <Job />;
+  return <JobPage />;
 };
 
 export default App;
