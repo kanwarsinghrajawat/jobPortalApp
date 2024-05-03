@@ -1,4 +1,4 @@
-import JobPage from "./JobPage";
+import JobPage from "./page/JobPage";
 
 const App = () => {
   return <JobPage />;

@@ -1,20 +1,18 @@
-import {
-  Employees,
-  Experience,
-  JobRole,
-  Location,
-  Salary,
-  jobType,
-} from "./constants";
-import Filter from "./lib/Filter";
-import SearchInput from "./lib/SearchInput";
+import { Experience, JobRole, Location, Salary, jobType } from "../constants";
+import Filter from "./Filter";
+import SearchInput from "./SearchInput";
 import { useDispatch } from "react-redux";
-import { searchFilterUpdate, selectedFilterUpdate } from "./store/reducer";
+import {
+  // clearFilters,
+  searchFilterUpdate,
+  selectedFilterUpdate,
+} from "../store/reducer";
 
 const InputFields = () => {
   const dispatch = useDispatch();
   const handleClear = () => {
     dispatch(searchFilterUpdate(""));
+    // dispatch(clearFilters());
   };
 
   const handleFilterChange = (filterKey: string) => (selectedValues: any[]) => {
@@ -29,20 +27,14 @@ const InputFields = () => {
   };
 
   return (
-    <div>
+    <div className="filterContainer">
       <Filter
         options={Experience}
         label="Minimum Experience"
         filterKey="experience"
         onSelectChange={handleFilterChange("experience")}
       />
-      <Filter
-        type={true}
-        options={Employees}
-        label="No. Of Employees"
-        filterKey="employees"
-        onSelectChange={handleFilterChange("employees")}
-      />
+
       <Filter
         type={true}
         options={JobRole}
@@ -70,8 +62,8 @@ const InputFields = () => {
         filterKey="location"
         onSelectChange={handleFilterChange("location")}
       />
-      <SearchInput />
-      <button onClick={handleClear}></button>
+      {/* <SearchInput /> */}
+      {/* <button onClick={handleClear}>Clear Filters</button> */}
     </div>
   );
 };

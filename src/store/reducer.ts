@@ -5,6 +5,7 @@ const jobsDataSlice = createSlice({
   initialState: {
     jobDetails: null,
     searchFilter: "",
+    filterCount: 0,
     selectedFilter: {
       experience: [],
       employees: [],
@@ -28,9 +29,30 @@ const jobsDataSlice = createSlice({
         [filterKey]: selectedValues,
       };
     },
+    selectedFilterCount: (state, action) => {
+      return {
+        ...state,
+        filterCount: action.payload,
+      };
+    },
+    // clearFilters: (state) => {
+    //   state.selectedFilter = {
+    //     experience: [],
+    //     employees: [],
+    //     location: [],
+    //     jobType: [],
+    //     jobRole: [],
+    //     salary: [],
+    //   };
+    // },
   },
 });
 
-export const { jobUpdate, searchFilterUpdate, selectedFilterUpdate } =
-  jobsDataSlice.actions;
+export const {
+  jobUpdate,
+  searchFilterUpdate,
+  selectedFilterUpdate,
+  // clearFilters
+  selectedFilterCount,
+} = jobsDataSlice.actions;
 export default jobsDataSlice.reducer;

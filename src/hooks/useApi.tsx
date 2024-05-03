@@ -1,28 +1,31 @@
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { jobUpdate } from "../store/reducer";
+import { jobUpdate, selectedFilterCount } from "../store/reducer";
 import { useSelector } from "react-redux";
+import { applyFilters } from "../lib/FilterLogic";
 
 const useApi = () => {
   const dispatch = useDispatch();
   const apiData = useSelector((store: any) => store.jobsDetailFetch);
-  const jobsData = apiData?.jobDetails;
-  const searchKeyword = apiData?.searchFilter;
-  const filterKeyword = apiData?.selectedFilter;
-  console.log(filterKeyword, "yuio");
-  let count = true; // Start with count as true
 
+  const filterKeyword = apiData?.selectedFilter;
+
+  // Taking the count of selected Filters
+  let count = 0;
   for (const key in filterKeyword) {
     if (
       (Array.isArray(filterKeyword[key]) && filterKeyword[key].length > 0) ||
       (typeof filterKeyword[key] === "string" &&
         filterKeyword[key].trim().length > 0)
     ) {
-      count = false;
-      break;
+      count++;
     }
   }
+
   console.log(count);
+  // dispatch(selectedFilterCount(count));
+
+  // Api call
   const fetchData = async () => {
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
@@ -41,26 +44,17 @@ const useApi = () => {
         requestOptions
       );
       const data = await response.json();
-      console.log(count, "fghjkl");
 
       let filteredJobs = data?.jdList;
-      console.log(filteredJobs);
-      console.log(filterKeyword.jobrole, "gbnjkol");
-      if (
-        filterKeyword &&
-        filterKeyword.jobrole &&
-        filterKeyword.jobrole.length > 0
-      ) {
-        filteredJobs = filteredJobs.filter((job: any) =>
-          filterKeyword.jobrole.includes(job.jobrole)
-        );
-        console.log(filteredJobs);
+
+      if (filterKeyword) {
+        filteredJobs = applyFilters(filteredJobs, filterKeyword);
       }
 
-      if (count === true) {
+      // condition to pass filter data or unfiltered data
+      if (count === 0) {
         dispatch(jobUpdate(data?.jdList));
       } else {
-        console.log("hello");
         dispatch(jobUpdate(filteredJobs));
       }
     } catch (error) {
@@ -68,10 +62,14 @@ const useApi = () => {
     }
   };
 
+  // api invoke
   useEffect(() => {
-    console.log("it's running");
     fetchData();
   }, [filterKeyword]);
+
+  useEffect(() => {
+    dispatch(selectedFilterCount(count));
+  }, [count]);
 };
 
 export default useApi;

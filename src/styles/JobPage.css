@@ -1,0 +1,10 @@
+.mainContainer {
+  width: 100%;
+  padding: 4rem;
+}
+.cardHolder {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4rem;
+  padding: 4rem 0;
+}
