@@ -4,7 +4,6 @@ const jobsDataSlice = createSlice({
   name: "jobsData",
   initialState: {
     jobDetails: null,
-    searchFilter: "",
     filterCount: 0,
     loading: true,
     selectedFilter: {
@@ -14,17 +13,19 @@ const jobsDataSlice = createSlice({
       jobType: [],
       jobRole: [],
       salary: [],
+      searchFilter: [],
     },
   },
   reducers: {
     jobUpdate: (state, action) => {
       state.jobDetails = action.payload;
     },
-    searchFilterUpdate: (state, action) => {
-      state.searchFilter = action.payload;
-    },
+    // searchFilterUpdate: (state, action) => {
+    //   state.searchFilter = action.payload;
+    // },
     selectedFilterUpdate: (state, action) => {
       const { filterKey, selectedValues } = action.payload;
+      console.log(selectedValues, "8yghjk");
       state.selectedFilter = {
         ...state.selectedFilter,
         [filterKey]: selectedValues,
@@ -57,7 +58,7 @@ const jobsDataSlice = createSlice({
 
 export const {
   jobUpdate,
-  searchFilterUpdate,
+  // searchFilterUpdate,
   selectedFilterUpdate,
   // clearFilters
   selectedFilterCount,

@@ -4,19 +4,19 @@ import SearchInput from "./SearchInput";
 import { useDispatch } from "react-redux";
 import {
   // clearFilters,
-  searchFilterUpdate,
+  // searchFilterUpdate,
   selectedFilterUpdate,
 } from "../store/reducer";
 
 const InputFields = () => {
   const dispatch = useDispatch();
   const handleClear = () => {
-    dispatch(searchFilterUpdate(""));
+    // dispatch(searchFilterUpdate(""));
     // dispatch(clearFilters());
   };
 
   const handleFilterChange = (filterKey: string) => (selectedValues: any[]) => {
-    console.log(`${filterKey} selected values:`, selectedValues);
+    console.log(`${filterKey} selectedvalues:`, selectedValues);
 
     dispatch(
       selectedFilterUpdate({
@@ -62,7 +62,7 @@ const InputFields = () => {
         filterKey="location"
         onSelectChange={handleFilterChange("location")}
       />
-      {/* <SearchInput /> */}
+      <SearchInput />
       {/* <button onClick={handleClear}>Clear Filters</button> */}
     </div>
   );

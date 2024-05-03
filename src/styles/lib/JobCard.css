@@ -36,10 +36,20 @@
   transition: all 0.2s ease-in-out;
   transform: scale(1.01);
 }
+.aboutCompany {
+}
+
+.modalButton {
+  width: 100%;
+  text-align: center;
+}
 .aboutPara {
   font-weight: 600;
   font-size: 1rem;
 }
+.detailcom {
+}
+
 .easyApply {
   background-color: #99f5dc;
   width: 100%;
@@ -50,6 +60,13 @@
   font-weight: 600;
   border-radius: 10px;
   margin: 1rem 0 0 0;
+}
+
+.searchInput {
+  padding: 1.1rem;
+  border: 1px solid rgb(192, 189, 189);
+  width: 200px;
+  border-radius: 4px;
 }
 
 @media (max-width: 1500px) {

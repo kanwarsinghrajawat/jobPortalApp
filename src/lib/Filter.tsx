@@ -28,7 +28,7 @@ const Filter = ({
         options={Array.isArray(options) ? options : []}
         getOptionLabel={(option: any) => option}
         renderInput={(params) => <TextField {...params} label={label} />}
-        sx={{ width: "300px" }}
+        sx={{ width: "200px" }}
         onChange={handleSelectChange}
       />
     </>

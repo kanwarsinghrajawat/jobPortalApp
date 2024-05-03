@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { JdItem } from "../types";
 import { useSelector } from "react-redux";
 import CompanyDetailModal from "./CompanyDetailModal";
@@ -24,9 +24,9 @@ const JobCard = () => {
           {jobsCard?.map((item: JdItem, key: number) => (
             <div key={key} className="cardContainer">
               <div className="imageContainer">
-                <img src="/logo.png" alt="logo" className="logoImage" />
+                <img src={item.logoUrl} alt="logo" className="logoImage" />
                 <div className="companyDetail">
-                  <p className="companyName">Company Name</p>
+                  <p className="companyName">{item.companyName}</p>
                   <h2 className="jobRole">{item.jobRole}</h2>
                   <p className="location">{item.location}</p>
                 </div>
@@ -38,8 +38,14 @@ const JobCard = () => {
               </p>
               <div className="aboutCompany">
                 <p className="aboutPara">About Company:</p>
-                <p>{item.jobDetailsFromCompany}</p>
-                <CompanyDetailModal aboutCompany={item.jobDetailsFromCompany} />
+
+                <p className="detailcom">{item.jobDetailsFromCompany}</p>
+                <div className="modalButton">
+                  <CompanyDetailModal
+                    className="modalBtn"
+                    aboutCompany={item.jobDetailsFromCompany}
+                  />
+                </div>
               </div>
               <div>
                 <p className="companyName">Minimum Experience:</p>

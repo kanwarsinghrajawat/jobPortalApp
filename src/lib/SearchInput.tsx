@@ -1,24 +1,42 @@
-import React from "react";
-import { searchFilterUpdate } from "../store/reducer";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
+import { selectedFilterUpdate } from "../store/reducer";
 
 const SearchInput = () => {
   const dispatch = useDispatch();
-  const apiData = useSelector((store: any) => store.jobsDetailFetch);
 
-  const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const value = event.target.value;
-    dispatch(searchFilterUpdate(value));
+  const [searchValue, setSearchValue] = useState("");
+
+  const handleSearch = (value: string) => {
+    dispatch(
+      selectedFilterUpdate({
+        filterKey: "searchFilter",
+        selectedValues: value,
+      })
+    );
+  };
+
+  useEffect(() => {
+    const debounceSearch = setTimeout(() => {
+      handleSearch(searchValue);
+    }, 1000);
+
+    return () => clearTimeout(debounceSearch);
+  }, [searchValue]);
+
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchValue(event.target.value);
   };
 
   return (
     <>
       <input
         type="text"
-        placeholder="Search Job Role"
-        value={apiData?.searchFilter}
-        onChange={handleSearch}
+        placeholder="Search Company Name"
+        value={searchValue}
+        onChange={handleChange}
+        className="searchInput"
       />
     </>
   );

@@ -1,4 +1,5 @@
 export const applyFilters = (jobs: any, filterKeyword: any) => {
+  console.log(filterKeyword.searchFilter, "rtghbnm,");
   return jobs.filter((job: any) => {
     let passFilter = true;
 
@@ -51,6 +52,17 @@ export const applyFilters = (jobs: any, filterKeyword: any) => {
       filterKeyword.salary.length > 0 &&
       !isNaN(parseInt(filterKeyword.salary)) &&
       parseInt(job.minJdSalary) < parseInt(filterKeyword.salary)
+    ) {
+      passFilter = false;
+    }
+    // Check searchCompany name filter
+    // Check search company name filter
+    if (
+      filterKeyword.searchFilter &&
+      filterKeyword.searchFilter.length > 0 &&
+      !job.companyName
+        .toLowerCase()
+        .includes(filterKeyword.searchFilter.toLowerCase())
     ) {
       passFilter = false;
     }
