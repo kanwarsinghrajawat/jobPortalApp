@@ -9,7 +9,6 @@ const style = {
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
-  width: 600,
   bgcolor: "background.paper",
   boxShadow: 24,
   p: 4,
@@ -29,7 +28,7 @@ const CompanyDetailModal = ({ aboutCompany }: any) => {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <Box sx={style}>
+        <Box sx={style} className="modalStyle">
           <Typography id="modal-modal-title" variant="h6" component="h2">
             Job Description{" "}
           </Typography>

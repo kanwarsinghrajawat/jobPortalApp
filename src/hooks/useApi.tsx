@@ -1,13 +1,15 @@
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { jobUpdate, selectedFilterCount } from "../store/reducer";
+import { jobUpdate, selectedFilterCount, setIsLoading } from "../store/reducer";
 import { useSelector } from "react-redux";
 import { applyFilters } from "../lib/FilterLogic";
 
 const useApi = () => {
   const dispatch = useDispatch();
   const apiData = useSelector((store: any) => store.jobsDetailFetch);
+  const loader = apiData.loading;
 
+  console.log(loader);
   const filterKeyword = apiData?.selectedFilter;
 
   // Taking the count of selected Filters
@@ -62,13 +64,22 @@ const useApi = () => {
     }
   };
 
+  const setLoadingState = (isLoading: boolean) => {
+    dispatch(setIsLoading(isLoading));
+  };
+
   // api invoke
   useEffect(() => {
+    setLoadingState(true);
+
     fetchData();
+    setLoadingState(false);
   }, [filterKeyword]);
 
   useEffect(() => {
+    setLoadingState(true);
     dispatch(selectedFilterCount(count));
+    setLoadingState(false);
   }, [count]);
 };
 

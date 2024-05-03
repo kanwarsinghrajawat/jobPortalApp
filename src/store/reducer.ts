@@ -6,6 +6,7 @@ const jobsDataSlice = createSlice({
     jobDetails: null,
     searchFilter: "",
     filterCount: 0,
+    loading: true,
     selectedFilter: {
       experience: [],
       employees: [],
@@ -35,6 +36,12 @@ const jobsDataSlice = createSlice({
         filterCount: action.payload,
       };
     },
+    setIsLoading: (state, action) => {
+      return {
+        ...state,
+        loading: action.payload,
+      };
+    },
     // clearFilters: (state) => {
     //   state.selectedFilter = {
     //     experience: [],
@@ -54,5 +61,6 @@ export const {
   selectedFilterUpdate,
   // clearFilters
   selectedFilterCount,
+  setIsLoading,
 } = jobsDataSlice.actions;
 export default jobsDataSlice.reducer;

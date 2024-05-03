@@ -7,13 +7,13 @@ import Skeleton from "@mui/material/Skeleton";
 
 const ShimmerEffect = () => {
   return (
-    <Card sx={{ maxWidth: 345, m: 2 }}>
+    <Card style={{ width: "20%" }}>
       <CardHeader
         avatar={
           <Skeleton
             animation="wave"
             variant="circular"
-            width={60}
+            width={80}
             height={60}
           />
         }
@@ -25,7 +25,7 @@ const ShimmerEffect = () => {
             style={{ marginBottom: 6 }}
           />
         }
-        subheader={<Skeleton animation="wave" height={10} width="40%" />}
+        subheader={<Skeleton animation="wave" height={10} width="100%" />}
       />
       {<Skeleton sx={{ height: 190 }} animation="wave" variant="rectangular" />}
       <CardContent>

@@ -9,3 +9,18 @@
     width: 10%;
   }
 }
+.modalStyle {
+  width: 40%;
+}
+
+@media (max-width: 600px) {
+  .modalStyle {
+    width: 60%;
+  }
+}
+
+@media (max-width: 500px) {
+  .modalStyle {
+    width: 85%;
+  }
+}
