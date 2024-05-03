@@ -7,7 +7,7 @@ import { JdItem } from "./types";
 const JobPage = () => {
   const apiData = useSelector((store: any) => store.jobsDetailFetch);
   console.log(apiData);
-  const jobsCard = apiData?.jobDetails?.jdList;
+  const jobsCard = apiData?.jobDetails;
   useApi();
   return (
     <>

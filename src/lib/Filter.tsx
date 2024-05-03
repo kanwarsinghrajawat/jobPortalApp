@@ -5,20 +5,24 @@ const Filter = ({
   type,
   options,
   label,
+  filterKey,
+  onSelectChange,
 }: {
   type?: any;
-  options?: any[];
+  options: any[];
   label: string;
+  filterKey: string;
+  onSelectChange: (selectedValues: any[]) => void;
 }) => {
   const isMultiple = type === true;
-  const handleAutocompleteChange = (event: any, value: any) => {
-    console.log("Selected options:", value);
+  const handleSelectChange = (event: any, value: any) => {
+    onSelectChange(value);
   };
 
   return (
     <>
       <Autocomplete
-        key={type}
+        key={filterKey}
         multiple={isMultiple}
         limitTags={2}
         id="multiple-limit-tags"
@@ -26,7 +30,7 @@ const Filter = ({
         getOptionLabel={(option: any) => option}
         renderInput={(params) => <TextField {...params} label={label} />}
         sx={{ width: "300px" }}
-        onChange={handleAutocompleteChange}
+        onChange={handleSelectChange}
       />
     </>
   );

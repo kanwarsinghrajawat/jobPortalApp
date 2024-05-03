@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { searchFilterUpdate } from "../store/reducer";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
@@ -16,7 +16,7 @@ const SearchInput = () => {
     <>
       <input
         type="text"
-        placeholder="search"
+        placeholder="Search Job Role"
         value={apiData?.searchFilter}
         onChange={handleSearch}
       />

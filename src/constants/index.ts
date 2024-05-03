@@ -10,7 +10,7 @@ export const Employees = [
   "71-80",
 ];
 export const JobRole = [
-  "Frontend",
+  "frontend",
   "Backend",
   "Flutter",
   "FulL Stack",
