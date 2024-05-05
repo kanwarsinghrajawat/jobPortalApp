@@ -22,7 +22,6 @@ const JobsContainer = () => {
   const shimmerArray = Array.from({ length: 8 });
 
   const loadMoreRef: any = useRef(null);
-  const [loadPagination, setLoadPagination] = useState(false);
   const dispatch = useDispatch();
   const filterKeyword = useSelector(
     (store: any) => store.jobsDetailFetch.selectedFilter
@@ -96,7 +95,7 @@ const JobsContainer = () => {
         observer.unobserve(loadMoreRef.current);
       }
     };
-  }, [loadPagination]);
+  }, []);
 
   useEffect(() => {
     const filtered = filterDuplicateRecords(jobsToShow, "jdUid");
