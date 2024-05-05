@@ -56,7 +56,6 @@ export const applyFilters = (jobs: any, filterKeyword: any) => {
       passFilter = false;
     }
     // Check searchCompany name filter
-    // Check search company name filter
     if (
       filterKeyword.searchFilter &&
       filterKeyword.searchFilter.length > 0 &&

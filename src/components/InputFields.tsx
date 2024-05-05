@@ -2,18 +2,10 @@ import { Experience, JobRole, Location, Salary, jobType } from "../constants";
 import Filter from "./Filter";
 import SearchInput from "./SearchInput";
 import { useDispatch } from "react-redux";
-import {
-  // clearFilters,
-  // searchFilterUpdate,
-  selectedFilterUpdate,
-} from "../store/reducer";
+import { selectedFilterUpdate } from "../store/reducer";
 
 const InputFields = () => {
   const dispatch = useDispatch();
-  const handleClear = () => {
-    // dispatch(searchFilterUpdate(""));
-    // dispatch(clearFilters());
-  };
 
   const handleFilterChange = (filterKey: string) => (selectedValues: any[]) => {
     console.log(`${filterKey} selectedvalues:`, selectedValues);
@@ -63,7 +55,6 @@ const InputFields = () => {
         onSelectChange={handleFilterChange("location")}
       />
       <SearchInput />
-      {/* <button onClick={handleClear}>Clear Filters</button> */}
     </div>
   );
 };

@@ -3,8 +3,10 @@ import { createSlice } from "@reduxjs/toolkit";
 const jobsDataSlice = createSlice({
   name: "jobsData",
   initialState: {
-    jobDetails: null,
+    jobDetails: [] as any[],
+    filteredData: [] as any[],
     filterCount: 0,
+    hasNextPage: true,
     loading: true,
     selectedFilter: {
       experience: [],
@@ -17,15 +19,8 @@ const jobsDataSlice = createSlice({
     },
   },
   reducers: {
-    jobUpdate: (state, action) => {
-      state.jobDetails = action.payload;
-    },
-    // searchFilterUpdate: (state, action) => {
-    //   state.searchFilter = action.payload;
-    // },
     selectedFilterUpdate: (state, action) => {
       const { filterKey, selectedValues } = action.payload;
-      console.log(selectedValues, "8yghjk");
       state.selectedFilter = {
         ...state.selectedFilter,
         [filterKey]: selectedValues,
@@ -43,25 +38,9 @@ const jobsDataSlice = createSlice({
         loading: action.payload,
       };
     },
-    // clearFilters: (state) => {
-    //   state.selectedFilter = {
-    //     experience: [],
-    //     employees: [],
-    //     location: [],
-    //     jobType: [],
-    //     jobRole: [],
-    //     salary: [],
-    //   };
-    // },
   },
 });
 
-export const {
-  jobUpdate,
-  // searchFilterUpdate,
-  selectedFilterUpdate,
-  // clearFilters
-  selectedFilterCount,
-  setIsLoading,
-} = jobsDataSlice.actions;
+export const { selectedFilterUpdate, selectedFilterCount, setIsLoading } =
+  jobsDataSlice.actions;
 export default jobsDataSlice.reducer;

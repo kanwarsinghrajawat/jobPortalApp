@@ -7,7 +7,7 @@ const Filter = ({
   filterKey,
   onSelectChange,
 }: {
-  type?: any;
+  type?: boolean;
   options: any[];
   label: string;
   filterKey: string;
