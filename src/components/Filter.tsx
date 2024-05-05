@@ -14,6 +14,8 @@ const Filter = ({
   onSelectChange: (selectedValues: any[]) => void;
 }) => {
   const isMultiple = type === true;
+
+  //@ts-ignore
   const handleSelectChange = (event: React.ChangeEvent<{}>, value: any) => {
     onSelectChange(value);
   };
